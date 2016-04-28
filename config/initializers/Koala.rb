@@ -1,0 +1,1 @@
+$fboauth = Koala::Facebook::OAuth.new(ENV["FACEBOOK_APP_ID"], ENV["FACEBOOK_APP_SECRET"], "http://jschober.com:3000/auth/facebook/callback")

@@ -1,0 +1,25 @@
+<%= form_for(@periscope) do |f| %>
+  <% if @periscope.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@periscope.errors.count, "error") %> prohibited this periscope from being saved:</h2>
+
+      <ul>
+      <% @periscope.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :twitterhandle %><br>
+    <%= f.text_field :twitterhandle %>
+  </div>
+  <div class="field">
+    <%= f.label :broadcast_id %><br>
+    <%= f.text_field :broadcast_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

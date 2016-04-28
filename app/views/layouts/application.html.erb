@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+  <title>OmniView Live</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<nav class="navbar navbar-dark">
+  <a class="navbar-brand" href="/">OmniView Live</a>
+  <ul class="nav navbar-nav">
+    <li class="navbar-brand"><%= notice %></li>
+    <li class="navbar-brand"><%= alert %></li>
+    <li class="nav-item"><%= link_to(current_user.firstname, current_user, class: "nav-link") if user_signed_in?%></li>
+    <%= user_signed_in? ? link_to('Logout', destroy_user_session_path, :method => :delete,class: "nav-link pull-xs-right btn btn-danger-outline") : link_to('Login', new_user_session_path, class: "nav-link pull-xs-right btn btn-primary-outline") %>
+  </ul>
+  </span>
+</nav>
+<div class="container-fluid">
+<%= yield %>
+</div>
+</body>
+</html>

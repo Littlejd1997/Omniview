@@ -1,0 +1,6 @@
+<div class="container-fluid" style="height: 200px;line-height: 200px;text-align: center; background: url('/background-img.png') 50% 50% / cover no-repeat rgb(0, 0, 0);">
+  <h2 style="color: white;font-size: 3em;-webkit-text-stroke: 0.8px rgba(100,100,100,0.5);text-align: center;display: inline-block;font-family: Roboto;vertical-align: middle">Broadcast Live.<br/>View Everywhere</h2>
+</div>
+<% User.all.each do|u| %>
+    <%=link_to "@#{u.twitterhandle}", u %><br/><br/>
+<%end%>
