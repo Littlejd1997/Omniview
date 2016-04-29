@@ -1,0 +1,21 @@
+<div class="container-fluid">
+
+  <h1>Thanks for authorizing your facebook account!</h1>
+  <h3>Would you like to post to a page or your personal account?</h3>
+  <div>
+    <form method="post" action="finishFacebook">
+      <input type="radio" id="-1" name="page" value="-1"><label for="-1"><img src="<%= @user_graph.get_picture('me') %>" style="margin: 10px;" class="img-circle"> <%= @user_graph.get_object('me')["name"] %>
+    </label><br/>
+      <% @user_graph.get_connections('me', 'accounts').each do |page| %>
+          <input type="radio" name="page" value="<%= page["id"] %>" id="<%= page["id"] %>"><label for="<%= page["id"] %>"><img src="<%= @user_graph.get_picture(page["id"]) %>" style="margin: 10px;" class="img-circle"> <%= page["name"] %>
+    </label><br/>
+      <% end %>
+      <hr/>
+      <h3>Sadly, we cannot automatically detect and rotate your video yet 😔 Therefore, you may pick a default orientation for your videos to be recorded in!</h3>
+      <input type="radio" id="0" name="orientation" value="0"><label for="0"> <img width="300px" src="/iphone.svg"></label>
+      <input type="radio" id="90" name="orientation" value="90"><label for="90"> <img width="300px" class="rotate90" src="/iphone.svg"></label>
+      <br/>
+      <button class="btn btn-success-outline">Finish</button>
+    </form>
+  </div>
+</div>
