@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160428182103) do
+ActiveRecord::Schema.define(version: 20160428193334) do
 
   create_table "periscopes", force: :cascade do |t|
     t.string   "twitterhandle"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 20160428182103) do
     t.string   "fbtoken"
     t.datetime "fbexpires"
     t.integer  "pageid"
+    t.integer  "defaultOrientation"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

@@ -31,7 +31,7 @@ class UsersController < ApplicationController
     user.fbtoken = oauth["access_token"]
     user.fbexpires = Time.now+oauth["expires"].to_i
     user.save
-    redirect_to user
+    @user_graph = Koala::Facebook::API.new(user.fbtoken)
   end
   def fail
     render text: "Sorry, but the following error has occured: #{params[:message]}. Please try again or contact
