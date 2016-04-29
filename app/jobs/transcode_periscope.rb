@@ -12,6 +12,7 @@ class TranscodePeriscope < ActiveJob::Base
     )
 
     obj = s3.bucket('com.jschober.transcope').object("#{periscope.broadcast_id}.mp4")
+
     File.delete("#{periscope.broadcast_id}.mp4") if obj.upload_file("#{periscope.broadcast_id}.mp4", acl:'public-read')
 
     obj.public_url

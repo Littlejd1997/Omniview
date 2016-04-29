@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-
+  skip_before_action :verify_authenticity_token, only: [:finishFacebook]
   # GET /users
   # GET /users.json
   def index
@@ -31,8 +31,20 @@ class UsersController < ApplicationController
     user.fbtoken = oauth["access_token"]
     user.fbexpires = Time.now+oauth["expires"].to_i
     user.save
-    @user_graph = Koala::Facebook::API.new(user.fbtoken)
+    redirect_to action: :setupFacebook
   end
+  def setupFacebook
+    @user_graph = Koala::Facebook::API.new(current_user.fbtoken)
+  end
+  def finishFacebook
+    current_user.pageid = params["page"]
+    current_user.defaultOrientation = params["orientation"]
+    current_user.save
+    flash[:notice] = "Facebook setup complete!"
+
+    redirect_to current_user
+  end
+
   def fail
     render text: "Sorry, but the following error has occured: #{params[:message]}. Please try again or contact
 administrator."

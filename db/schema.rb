@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160428193334) do
+ActiveRecord::Schema.define(version: 20160429040856) do
 
   create_table "periscopes", force: :cascade do |t|
     t.string   "twitterhandle"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20160428193334) do
     t.boolean  "completed",     default: false
     t.boolean  "pending",       default: false
     t.integer  "youtube_id"
+    t.string   "facebookVideo"
   end
 
   add_index "periscopes", ["broadcast_id"], name: "index_periscopes_on_broadcast_id", unique: true
@@ -47,8 +48,8 @@ ActiveRecord::Schema.define(version: 20160428193334) do
     t.string   "yttoken"
     t.string   "fbtoken"
     t.datetime "fbexpires"
-    t.integer  "pageid"
-    t.integer  "defaultOrientation"
+    t.string   "pageid"
+    t.integer  "defaultOrientation",     default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

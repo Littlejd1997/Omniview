@@ -1,11 +1,20 @@
 Rails.application.routes.draw do
   resources :youtubes
-  resources :periscopes
-  devise_for :users, :controllers => { :registrations => "users/registration" }
-  resources :users,param: :twitterhandle do
+  resources :periscopes do
+    member do
+      get 'exporttofacebook'
+    end
+  end
+  devise_for :users, :controllers => {:registrations => "users/registration"}
+  resources :users, param: :twitterhandle do
     get 'fbAuth' => "users#fbAuth"
+    collection do
+      get 'setupFacebook'
+      post 'finishFacebook'
+    end
   end
   get 'static/home'
+  get 'static/privacy'
   get '/auth/:provider/callback', to: 'users#oauth'
 
   root to: "static#home"

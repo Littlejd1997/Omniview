@@ -1,5 +1,5 @@
 class PeriscopesController < ApplicationController
-  before_action :set_periscope, only: [:show, :edit, :update, :destroy]
+  before_action :set_periscope, only: [:show, :edit, :update, :destroy,:exporttofacebook]
 
   # GET /periscopes
   # GET /periscopes.json
@@ -15,7 +15,11 @@ class PeriscopesController < ApplicationController
   # GET /periscopes/1/edit
   def edit
   end
-
+  def exporttofacebook
+    UploadToFacebook.perform_later(@periscope)
+    flash[:notice] = "Export to Facebook in progress..."
+    redirect_to @periscope.user
+  end
   # POST /periscopes
   # POST /periscopes.json
   def create

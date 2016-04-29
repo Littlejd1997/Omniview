@@ -1,8 +1,14 @@
-<div class="container">
+<div id="fb-root"></div>
+<div class="col-md-3">
   <%= link_to periscope do%>
   <h5><%=periscope.title%></h5>
       <% end %>
+  <% if periscope.facebookVideo.nil? %>
 <video preload="metadata" controls>
   <source src="https://s3.amazonaws.com/com.jschober.transcope/<%= periscope.broadcast_id %>.mp4" type="video/mp4">
-</video>
+</video><br/>
+      <%= link_to "Export To Facebook!", "/periscopes/#{periscope.id}/exporttofacebook" %>
+      <% else %>
+      <div class="fb-video" data-href="https://www.facebook.com/facebook/videos/<%= periscope.facebookVideo%>/" data-width="500" data-allowfullscreen="true" data-show-text="true"></div>
+      <% end %>
 </div>
