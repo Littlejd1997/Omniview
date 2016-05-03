@@ -21,5 +21,12 @@ test:
   database: db/test.sqlite3
 
 production:
-  <<: *default
-  database: db/production.sqlite3
+#  <<: *default
+#  database: db/production.sqlite3
+   host: localhost
+   database: omniview
+   adapter: postgresql
+   pool: 5
+   username: omniview
+   password: omniview
+   
