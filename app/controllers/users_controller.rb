@@ -35,6 +35,8 @@ class UsersController < ApplicationController
   end
   def setupFacebook
     @user_graph = Koala::Facebook::API.new(current_user.fbtoken)
+    user.automaticExport = true
+    user.save
   end
   def finishFacebook
     current_user.pageid = params["page"]
