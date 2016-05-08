@@ -6,7 +6,7 @@ class FetchPeriscopes < ActiveJob::Base
       return if (user.nil? || user.empty?)
       # Periscope.where.not(created_at: 24.hours.ago..Time.now).destroy_all
       $twitter.user_timeline(user, {count: 3200}).keep_if do |tweet|
-        tweet.source.include?("periscope") && (tweet.created_at >= 20.hours.ago)
+        tweet.source.include?("periscope") && (tweet.created_at >= 24.hours.ago)
       end.each do |tweet|
         p = Periscope.new
         p.createFromTweet(tweet)
