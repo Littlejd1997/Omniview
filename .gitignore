@@ -53,4 +53,5 @@ bower.json
 *.mp4
 /*.mp4
 *.ts
+.idea
 /*.ts
