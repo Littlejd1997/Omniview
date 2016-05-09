@@ -15,16 +15,15 @@
   </div>
 
 </div>
-
-<% @user.periscopes.where(completed: true).each do |periscope| %>
-    <%= render partial: 'periscopes/preview', locals: {periscope: periscope} %>
-    <!--<tr>-->
-    <!--<td><%= link_to periscope.title, "https://www.periscope.tv/w/#{periscope.broadcast_id}" %></td>-->
-    <!--
-    <% if periscope.completed %>-->
-        <!--<td>-->
-
-        <!--</td>-->
-    <% end %></tr>
-<% end %>
-
+<div class="container-fluid">
+  <% lastID=@user.periscopes.where(completed: true).order(created_at: :desc).last.id
+     @user.periscopes.where(completed: true).order(created_at: :desc).each_with_index do |periscope, index| %>
+      <% if (index%4 == 0) %>
+          <div class="row">
+      <% end %>
+      <%= render partial: 'periscopes/preview', locals: {periscope: periscope} %>
+      <% if (index%4 ==3 || lastID == periscope.id) %>
+          </div>
+      <% end %>
+  <% end %>
+</div>

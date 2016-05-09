@@ -10,14 +10,14 @@ default: &default
   timeout: 5000
 
 development:
-  <<: *default
-  database: db/development.sqlite3
-#   host: localhost
-#   database: omniview
- #  adapter: postgresql
-  # pool: 5
- ##  username: omniview
-  # password: omniview
+#  <<: *default
+#  database: db/development.sqlite3
+     host: omniview.live
+     database: omniview
+     adapter: postgresql
+     pool: 5
+     username: omniview
+     password: omniview
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".

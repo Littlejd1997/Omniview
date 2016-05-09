@@ -29,6 +29,8 @@ module Transcope
         rescue
         end
       end
-   end
+      RefreshFacebookToken.perform_later
+    end
+
   end
 end
