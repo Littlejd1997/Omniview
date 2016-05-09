@@ -3,7 +3,7 @@
     <img class="img-circle " src="https://twitter.com/<%=@user.twitterhandle%>/profile_image?size=bigger" alt=""/>
     <h3><%= @user.firstname %> <%= @user.lastname %><br/><i><small>@<%= @user.twitterhandle%></small></i></h3>
     <p><%= @user.bio %></p>
-    <% unless current_user.nil? %>
+    <% unless current_user.nil? && current_user == @user %>
     <p><%= link_to 'Authorize', $fboauth.url_for_oauth_code(permissions: "manage_pages publish_pages") %> your Facebook account for native exports!</p>
         <% end %>
   </div>
