@@ -34,6 +34,10 @@ class Periscope < ActiveRecord::Base
     uri = URI("https://api.periscope.tv/api/v2/getAccessPublic?token=#{broadcast_id}")
     periscopeAPI = JSON.parse!(Net::HTTP.get(uri))
   end
+  def inProgress?
+    periscopeAPI['type'] == "StreamTypeWeb"
+
+  end
 
   def generateffmpeg(api)
     cookies = generateCookies(api)

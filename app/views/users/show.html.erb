@@ -16,7 +16,7 @@
 
 </div>
 <div class="container-fluid">
-  <% lastID=@user.periscopes.where(completed: true).order(created_at: :desc).last.id
+  <% lastID=@user.periscopes.where().order(created_at: :desc).last.id
      @user.periscopes.where(completed: true).order(created_at: :desc).each_with_index do |periscope, index| %>
       <% if (index%4 == 0) %>
           <div class="row">
