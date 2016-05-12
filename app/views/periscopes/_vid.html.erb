@@ -1,4 +1,3 @@
-<% periscope = @periscope%>
 <div class="container-fluid centered">
   <% if @periscope.facebookVideo.nil? %>
       <video preload="metadata" controls id="<%= @periscope.broadcast_id %>">
@@ -20,8 +19,8 @@
               }
             </script>
         <% end %>
-      <br/>
-      <%= link_to "Export To Facebook!", "/periscopes/#{periscope.id}/exporttofacebook" %>
+        <br/>
+        <%= link_to "Export To Facebook!", "/periscopes/#{periscope.id}/exporttofacebook" %>
   <% else %>
       <div class="fb-video" data-href="https://www.facebook.com/facebook/videos/<%= periscope.facebookVideo%>/" data-width="500" data-allowfullscreen="true" data-show-text="true"></div>
   <% end %>
