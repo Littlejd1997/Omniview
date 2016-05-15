@@ -1,26 +1,14 @@
 <% periscope = @periscope%>
 <div class="container-fluid centered">
   <% if @periscope.facebookVideo.nil? %>
-      <video preload="metadata" controls id="<%= @periscope.broadcast_id %>">
+      <video preload="metadata" controls>
         <% if @periscope.completed %>
 
             <source src="https://s3.amazonaws.com/com.jschober.transcope/<%= periscope.broadcast_id %>.mp4" type="video/mp4">
-            </video>
         <% else%>
-            </video>
-            <script>
-              if(Hls.isSupported()) {
-                var video = document.getElementById("<%= @periscope.broadcast_id %>");
-                var hls = new Hls();
-                hls.loadSource("<%= @periscope.getAPI["https_hls_url"]%>");
-                hls.attachMedia(video);
-                hls.on(Hls.Events.MANIFEST_PARSED,function() {
-                  video.play();
-                });
-              }
-            </script>
+            <source src="<%= @periscope.getAPI["https_hls_url"]%>" type="application/x-mpegURL">
         <% end %>
-      <br/>
+      </video><br/>
       <%= link_to "Export To Facebook!", "/periscopes/#{periscope.id}/exporttofacebook" %>
   <% else %>
       <div class="fb-video" data-href="https://www.facebook.com/facebook/videos/<%= periscope.facebookVideo%>/" data-width="500" data-allowfullscreen="true" data-show-text="true"></div>
